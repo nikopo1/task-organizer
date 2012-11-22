@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TabHost android:id="@+id/tabhost" 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent">
+		<TabWidget android:id="@android:id/tabs"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content" />
+		<FrameLayout android:id="@android:id/tabcontent"
+			android:layout_width="fill_parent" android:layout_height="fill_parent"
+			android:paddingTop="62px">
+			<TextView android:id="@+id/tab1"
+				android:text="Stub. To be continued with add event from Ema."
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent" 
+				android:layout_centerHorizontal="true" />
+			<ScrollView
+				android:id="@+id/tab2"
+				android:layout_gravity="top"
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content" >
+				<TableLayout
+					android:id="@+id/prio"
+					android:layout_width="fill_parent"
+					android:layout_height="fill_parent"
+					android:stretchColumns="0">
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#00FF00" />
+						<TextView
+							android:text="#00FF00"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#0000FF" />
+						<TextView
+							android:text="#0000FF"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FF0000" />
+						<TextView
+							android:text="#FF0000"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FFFF00" />
+						<TextView
+							android:text="#FFFF00"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FF00FF" />
+						<TextView
+							android:text="#FF00FF"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#00FF00" />
+						<TextView
+							android:text="#00FF00"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#0000FF" />
+						<TextView
+							android:text="#0000FF"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FF0000" />
+						<TextView
+							android:text="#FF0000"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FFFF00" />
+						<TextView
+							android:text="#FFFF00"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#FF00FF" />
+						<TextView
+							android:text="#FF00FF"
+							android:layout_gravity="center_vertical" />
+					</TableRow>
+					<TableRow>
+						<View
+							android:layout_height="80px"
+							android:background="#00FFFF" />
+						<CheckBox 
+							android:id="@+id/check"
+							android:checked="true"
+							android:layout_gravity="left"
+							android:text="Your default view is Prio" />
+					</TableRow>
+				</TableLayout>
+			</ScrollView>
+			<TextView android:id="@+id/tab3"
+				android:text="Stub. To be continued with day view from Emanuel."
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent" 
+				android:layout_centerHorizontal="true" />
+			<TextView android:id="@+id/tab4"
+				android:text="Stub. To be continued with all events view from me."
+				android:layout_width="fill_parent"
+				android:layout_height="fill_parent" 
+				android:layout_centerHorizontal="true" />
+		</FrameLayout>
+	</TabHost>
+</LinearLayout>
