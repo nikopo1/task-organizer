@@ -207,5 +207,8 @@ public class Task {
 		return endTimeMinute;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return beginTimeHour+":"+beginTimeMinute+" - "+title;
+	}
 }
