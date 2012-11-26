@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -15,53 +17,18 @@ import android.view.View.OnClickListener;
 
 import java.util.ArrayList;
 
-import com.Android.skeleton.SelectFilterActivity.MyGestureDetector;
 
-public class Now extends Activity implements OnClickListener {
+public class Now extends Activity implements OnGestureListener {
 
-	private static final int SWIPE_MIN_DISTANCE = 120;
-	private static final int SWIPE_MAX_OFF_PATH = 250;
-	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-	public GestureDetector gestureDetector;
-	public View.OnTouchListener gestureListener;
-
-
-	ListView listview;
-	ArrayList<String> elems;
+	public static final int MOVE = 120;
+	
+	TabHost tabs;
+	ListView listviewPrio;
 	ArrayList<Task> tasks;
 	int currenttab = 1;
-	TabHost tabs;
 
-	class MyGestureDetector extends SimpleOnGestureListener {
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			try {
-				if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-					return false;
-				// right to left swipe
-				if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-					//Toast.makeText(Now.this, "Left Swipe", Toast.LENGTH_SHORT).show();
-					currenttab = (currenttab+1)%4;
-					tabs.setCurrentTab(currenttab);
-				}  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-					//Toast.makeText(Now.this, "Right Swipe", Toast.LENGTH_SHORT).show();
-					currenttab = (currenttab-1)%4;
-					tabs.setCurrentTab(currenttab);
-					
-				}
-			} catch (Exception e) {
-				// nothing
-			}
-			return false;
-		}
 
-	}
 
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -104,19 +71,57 @@ public class Now extends Activity implements OnClickListener {
 			tasks.add(t);
 		}
 
-		listview = (ListView)findViewById(R.id.tab2);
-
-		MyAdapter adapter = new MyAdapter(this, tasks);
-		listview.setAdapter(adapter);
-
-		gestureDetector = new GestureDetector((OnGestureListener) new MyGestureDetector());
-		gestureListener = new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				return gestureDetector.onTouchEvent(event);
-			}
-		};
+		listviewPrio = (ListView)findViewById(R.id.tab2);
+	//	listview.setOnTouchListener(this);
 		
-		listview.setOnTouchListener(gestureListener);
+		MyAdapter adapter = new MyAdapter(this, tasks);
+		listviewPrio.setAdapter(adapter);
+	}
+
+
+	@Override
+	public boolean onDown(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float arg2,
+			float arg3) {
+		
+		if(e2.getX() - e1.getX() > MOVE){
+            int id = listviewPrio.pointToPosition((int) e1.getX(), (int) e1.getY());
+            Toast.makeText(getApplicationContext(), "id="+id, Toast.LENGTH_SHORT).show();
+            //Reminder temp = (Reminder) adapter.getItem((id));
+            return true;
+        }
+
+        return false;
+	}
+
+	@Override
+	public void onLongPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
+			float arg3) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getApplicationContext(), "muie", Toast.LENGTH_SHORT).show();
+		return false;
+	}
+
+	@Override
+	public void onShowPress(MotionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

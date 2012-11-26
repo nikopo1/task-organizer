@@ -1,0 +1,310 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        	
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollComp"
+        >
+ 		<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			xmlns:tools="http://schemas.android.com/tools"
+			android:orientation="vertical"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			>        
+            
+		    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        xmlns:tools="http://schemas.android.com/tools"
+		        android:id="@+id/titleLayout"
+		        android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+		        >    
+	    		<TextView 
+	        		android:id="@+id/labelTitle"
+        			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content"
+        			android:text="@string/titleMessage"
+        			android:textSize="10sp"
+    			/>
+    	<EditText 
+	        android:id="@+id/title"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:textSize="10sp"	
+    		android:inputType="text"
+    	/>
+    </LinearLayout>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tools="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/titleLayout"
+	    android:id="@+id/allDayRepeatLayout"
+	>
+		<CheckBox 
+	    	android:id="@+id/allDay"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/allDayMessage"
+    		android:textSize="10sp"
+		/>
+		<CheckBox 
+    		android:id="@+id/repeat"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/repeatMessage"
+    		android:textSize="10sp"
+		/>
+		<CheckBox
+		    android:id="@+id/fill"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="@string/fillMessage"
+		    android:textSize="10sp"
+		/>
+	</LinearLayout>
+	
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"   
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/allDayRepeatLayout"
+	    android:id="@+id/dateTimeLayout"
+	    >
+	    <Button
+	        android:id="@+id/beginDate"
+	        android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="10sp"
+		    android:layout_alignParentLeft="true" 
+	    />
+	    <Button
+	        android:id="@+id/beginTime"
+	        android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="10sp"
+		    android:layout_toRightOf="@id/beginDate"
+	    />
+	    
+	    <Button
+	        android:id="@+id/endDate"
+	        style="@style/AppTheme"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:textSize="10sp" />
+
+	     <Button
+	        android:id="@+id/endTime"
+	        android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textSize="10sp"
+		    android:layout_toLeftOf="@id/endDate"
+	    />	   
+	</RelativeLayout>
+	    
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/dateTimeLayout"
+	    android:id="@+id/repeatTypeLayout"
+	    >
+	    <TextView
+	        android:id="@+id/repeatType1Label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/repeatType1Message"
+	        android:textSize="10sp"
+	        android:visibility="invisible"
+	    />
+	    <Spinner 
+	        android:id="@+id/repeatType1"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="true"
+	        android:gravity="left"
+	        android:textSize="5sp"
+	    	android:visibility="invisible"
+	    	android:entries="@array/repeatType1Values"
+	    />
+	    <TextView
+	        android:id="@+id/repeatType2Label"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"  
+	        android:text="@string/repeatType2Message"
+	        android:padding="0px"
+	        android:textSize="10sp"
+	        android:visibility="invisible"
+	    />
+	    <Spinner 
+	        android:id="@+id/repeatType2"
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="true"
+	        android:padding="0px"
+	        android:textSize="5sp"
+	        android:gravity="left"
+	        android:visibility="invisible"
+	        android:entries="@array/repeatType2Values"
+	    />
+	    <TextView
+	        android:id="@+id/repeatType2After"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/repeatType2AfterMessage"
+	        android:textSize="10sp"
+	        android:visibility="invisible"
+	    />
+	    
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/descriptionLayout"
+	    android:layout_below="@id/repeatTypeLayout"
+	 	>
+	    <TextView
+		    android:id="@+id/descriptionLabel"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/descriptionMessage"
+	    	android:textSize="10sp"
+		/>
+	    <EditText
+	        android:id="@+id/description" 
+	        android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:textSize="10sp"
+	    	android:inputType="text"
+	    />  
+	</LinearLayout>
+	
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/locationLayout"
+	    android:layout_below="@id/descriptionLayout"
+	 	>
+	    <TextView
+		    android:id="@+id/locationLabel"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="@string/locationMessage"
+	    	android:textSize="10sp"
+		/>
+	    <EditText
+	        android:id="@+id/location" 
+	        android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:textSize="10sp"
+	    	android:inputType="text"
+	    />  
+	</LinearLayout>
+	
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:id="@+id/priorityLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/locationLayout"
+	    android:orientation="horizontal" >
+
+	    <TextView
+	        android:id="@+id/priorityLabel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/priorityMessage"
+	        android:textSize="10sp" />
+
+	    <Spinner
+	        android:id="@+id/priority"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="true"
+	        android:gravity="left"
+	        android:textSize="5sp"
+	        android:entries="@array/priorityValues"
+	    />
+
+	</LinearLayout>
+	
+<!--  	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:id="@+id/considerPriorityLayout"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/priorityLayout"
+	    android:orientation="vertical" >
+	
+		<CheckBox 
+	    	android:id="@+id/considerPriority"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/considerPriorityMessage" 		
+    		android:textSize="10sp"
+		/>
+	</LinearLayout>
+-->	
+<!--	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:id="@+id/considerTimeLayout"
+	    android:layout_below="@id/considerPriorityLayout"
+	 	>
+		<CheckBox 
+	    	android:id="@+id/considerTime"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/considerTimeMessage"
+    		android:textSize="10sp"
+		/>
+	</LinearLayout>
+	
+-->	
+	</RelativeLayout>
+	
+	</ScrollView>
+	
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:tool="http://schemas.android.com/tools"
+	    android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	 
+	    android:layout_alignParentBottom="true"
+	    android:id="@+id/buttonsLayout"
+	    >
+		<Button
+		    android:id="@+id/ok"
+		   	android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="@string/okMessage"
+		/>
+		<Button
+		    android:id="@+id/cancel"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1"
+		    android:text="@string/cancelMessage"
+		/>
+	</LinearLayout>
+	
+</RelativeLayout>
+	
+	
+

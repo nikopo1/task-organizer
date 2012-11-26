@@ -1,8 +1,5 @@
 package com.Android.skeleton;
 
-import java.sql.Time;
-import java.util.Date;
-
 public class Task {
 	
 	// titlul task-ului
@@ -22,6 +19,10 @@ public class Task {
 	private boolean considerPriority;
 	// daca tii cont de data/ora evenimentului cand planifici
 	private boolean considerTime;
+	
+	// true daca evenimentul ocupa tot intervalul de timp
+	// false daca intervalul de timp este timpul pe care il ai disponibil pentru event
+	private boolean fill;
 	
 	//private Date beginDate;
 	private int beginDateYear;
@@ -49,6 +50,16 @@ public class Task {
 	
 	public Task()
 	{}
+	
+	public void setFill(boolean fill)
+	{
+		this.fill = fill;
+	}
+	
+	public boolean getFill()
+	{
+		return fill;
+	}
 	
 	public void setRepeatType(int repeatType)
 	{
@@ -207,8 +218,5 @@ public class Task {
 		return endTimeMinute;
 	}
 	
-	@Override
-	public String toString() {
-		return beginTimeHour+":"+beginTimeMinute+" - "+title;
-	}
+	
 }
