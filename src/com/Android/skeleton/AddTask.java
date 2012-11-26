@@ -140,8 +140,7 @@ AdapterView.OnItemSelectedListener{
 				readTitle();
 				readDescription();
 				readLocation();
-				MyApplication.tasks.add(task);
-				MyApplication.adapter.notifyDataSetChanged();
+				MyApplication.addTask(task);
 				finish();
 			}
 		}
@@ -159,8 +158,8 @@ AdapterView.OnItemSelectedListener{
 		String currentTime;
 		if (dateAndTime.get(Calendar.MINUTE)<10)
 			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
-			else
-				currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
+		else
+			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
 
 		beginDate.setOnClickListener(new View.OnClickListener() {
 
@@ -219,6 +218,24 @@ AdapterView.OnItemSelectedListener{
 			}
 		});
 		endTime.setText(currentTime);
+
+		updateBeginDate();
+		updateEndDate();
+		updateBeginTime();
+		updateEndTime();
+
+		task.setPriority(0);
+		task.setRepeatType(0);
+		task.setRepeatInterval(1);
+
+		task.setAllDay(false);
+		task.setRepeat(false);
+		task.setFill(false);
+		
+
+		
+		
+		
 	}
 
 	public void readTitle()

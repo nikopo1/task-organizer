@@ -66,9 +66,8 @@ public class Now extends Activity implements OnGestureListener {
 		//Default incepem pe priority
 		tabs.setCurrentTab(currenttab);
 
-		ArrayList<Task> tasks = MyApplication.tasks;
 		Task t;
-
+		/*
 		for(int i = 0; i < 20; i++) {
 			t = new Task();
 			t.setBeginTime( i%24, 30);
@@ -76,11 +75,12 @@ public class Now extends Activity implements OnGestureListener {
 			t.setTitle("Task "+i);
 			tasks.add(t);
 		}
+		*/
+		
 
 		listviewPrio = (ListView)findViewById(R.id.tab2);
-	//	listview.setOnTouchListener(this);
-		MyApplication.adapter = new MyAdapter(this, tasks);
-		listviewPrio.setAdapter(MyApplication.adapter);
+		MyApplication.prioadapter = new MyAdapter(this, MyApplication.priotasks);
+		listviewPrio.setAdapter(MyApplication.prioadapter);
 	}
 
 

@@ -1,13 +1,14 @@
 package com.Android.skeleton;
 
-import java.io.Serializable;
 
-public class Task implements Serializable {
+import java.sql.Time;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+
+
+public class Task {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	// titlul task-ului
 	private String title;
 	// daca este un eveniment care dureaza toata ziua
@@ -21,14 +22,14 @@ public class Task implements Serializable {
 	// prioritatea evenimentului 
 	// de la 0 la 10
 	private int priority;
+	//prioritatea calculata in functie de timp
+	private float timePriority;
+	//prioritatea totala
+	private float totalPriority;
 	// daca tii cont de prioritatea evenimentului atunci cand planifici
 	private boolean considerPriority;
 	// daca tii cont de data/ora evenimentului cand planifici
 	private boolean considerTime;
-	
-	// true daca evenimentul ocupa tot intervalul de timp
-	// false daca intervalul de timp este timpul pe care il ai disponibil pentru event
-	private boolean fill;
 	
 	//private Date beginDate;
 	private int beginDateYear;
@@ -54,18 +55,41 @@ public class Task implements Serializable {
 	// de la 1 la 10 
 	private int repeatInterval;
 	
+	private boolean fill;
+	//0 all day , 1 event, 2 project
+	private int taskType=2;
+	
+	
+	public int TESTID;
+	
+	@Override
+	public String toString()
+	{
+		return "ID "+TESTID;
+	}
+	
 	public Task()
 	{}
 	
-	public void setFill(boolean fill)
+	
+	public GregorianCalendar getBeginTimeInGregorian()
 	{
-		this.fill = fill;
+		return new GregorianCalendar(getBeginDateYear(), 
+									 getEndDateMonth(), 
+									 getBeginDateDay(), 
+									 getBeginTimeHour(), 
+									 getBeginTimeMinute());
+		
+	}
+	public GregorianCalendar getEndTimeInGregorian()
+	{
+		return new GregorianCalendar(getEndDateYear(),
+									 getEndDateMonth(),
+									 getEndDateDay(),
+									 getEndTimeHour(),
+									 getEndTimeMinute()); 
 	}
 	
-	public boolean getFill()
-	{
-		return fill;
-	}
 	
 	public void setRepeatType(int repeatType)
 	{
@@ -97,6 +121,21 @@ public class Task implements Serializable {
 	
 	public void setAllDay(boolean allDay)
 	{
+		if(allDay==true)
+		{
+			if(getFill()==false)
+				setTaskType(0);
+			else
+				setTaskType(1);
+		}
+		else
+		{
+			if(getFill()==false)
+				setTaskType(2);
+			else
+				setTaskType(1);
+			
+		}
 		this.allDay = allDay;
 	}
 	public boolean getAllDay()
@@ -223,6 +262,51 @@ public class Task implements Serializable {
 	{
 		return endTimeMinute;
 	}
+
+	public boolean getFill() {
+		return fill;
+	}
+
+	public void setFill(boolean fill) 
+	{
+		if(fill==true)
+			setTaskType(1);
+		else
+		{
+			if(getAllDay()==true)
+				setTaskType(0);
+			else
+				setTaskType(2);	
+		}
+		this.fill = fill;
+	}
+
+	public int getTaskType() {
+		return taskType;
+	}
+
+	private void setTaskType(int taskType) {
+		this.taskType = taskType;
+	}
+
+
+	public float getTotalPriority() {
+		return totalPriority;
+	}
+
+
+	public void setTotalPriority(float totalPriority) {
+		this.totalPriority = totalPriority;
+	}
+
+	public float getTimePriority() {
+		return timePriority;
+	}
+
+	public void setTimePriority(float timePriority) {
+		this.timePriority = timePriority;
+	}
+
 	
 	
 }
