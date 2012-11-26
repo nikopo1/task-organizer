@@ -275,6 +275,23 @@
 	</LinearLayout>
 	
 -->	
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    androidrientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/considerTimeLayout"
+    android:layout_below="@id/priorityLayout"
+>
+ <CheckBox 
+    android:id="@+id/considerTime"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/considerTimeMessage"
+    android:textSize="10sp"
+    android:visibility = "invisible"
+/>
+</LinearLayout>
 	</RelativeLayout>
 	
 	</ScrollView>

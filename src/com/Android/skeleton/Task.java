@@ -1,7 +1,13 @@
 package com.Android.skeleton;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// titlul task-ului
 	private String title;
 	// daca este un eveniment care dureaza toata ziua

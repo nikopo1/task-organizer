@@ -22,7 +22,7 @@ import android.widget.TimePicker;
 
 
 public class AddTask extends Activity implements CompoundButton.OnCheckedChangeListener, 
-												 AdapterView.OnItemSelectedListener{
+AdapterView.OnItemSelectedListener{
 
 	CheckBox checkBoxAllDay;
 	CheckBox checkBoxRepeat;
@@ -41,17 +41,17 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 	TextView selection;
 	TextView priorityLabel;
 	Task task;
-	
+
 	Spinner repeatType1;
 	Spinner repeatType2;
 	TextView repeatType1Label;
 	TextView repeatType2Label;
 	TextView repeatType2After;
-	
+
 	Spinner priority;
-	
+
 	Calendar dateAndTime= Calendar.getInstance();
-	
+
 	OnDateSetListener beginDatePicker = new OnDateSetListener()
 	{
 		public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
@@ -90,77 +90,80 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 			updateEndTime();
 		}
 	};
-	
 
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_task);
-        
-        task = new Task();
-        task.setRepeatInterval(1);
-        task.setRepeatType(0);
-        task.setPriority(0);
-        
-        checkBoxAllDay = (CheckBox)findViewById(R.id.allDay);
-        checkBoxRepeat = (CheckBox)findViewById(R.id.repeat);
-   //     considerPriority = (CheckBox)findViewById(R.id.considerPriority);
-    //    considerTime = (CheckBox)findViewById(R.id.considerTime);
-        titleField = (EditText)findViewById(R.id.title);
-        description = (EditText)findViewById(R.id.description);
-        location = (EditText)findViewById(R.id.location);
-        okButton = (Button)findViewById(R.id.ok);
-        cancelButton = (Button)findViewById(R.id.cancel);
-        beginDate = (Button)findViewById(R.id.beginDate);
-        endDate = (Button)findViewById(R.id.endDate);
-        beginTime = (Button)findViewById(R.id.beginTime);
-        endTime = (Button)findViewById(R.id.endTime);
-        checkBoxAllDay.setOnCheckedChangeListener(this);
-        checkBoxRepeat.setOnCheckedChangeListener(this);
-        checkBoxFill = (CheckBox)findViewById(R.id.fill);
-        checkBoxFill.setOnCheckedChangeListener(this);
-        priorityLabel = (TextView)findViewById(R.id.priorityLabel);
-        
-        repeatType1Label = (TextView)findViewById(R.id.repeatType1Label);
-        repeatType2Label = (TextView)findViewById(R.id.repeatType2Label);
-        repeatType2After = (TextView)findViewById(R.id.repeatType2After);
-        repeatType1 = (Spinner)findViewById(R.id.repeatType1);
-        repeatType2 = (Spinner)findViewById(R.id.repeatType2);
-        priority = (Spinner)findViewById(R.id.priority);
-        
-        repeatType1.setOnItemSelectedListener(this);
-        repeatType2.setOnItemSelectedListener(this);
-        priority.setOnItemSelectedListener(this);
-        
-        okButton.setOnClickListener(new Button.OnClickListener()
-        {
-        	public void onClick(View v)
-        	{
-        		readTitle();
-        		readDescription();
-        		readLocation();
-        	}
-        }
-        );
-        cancelButton.setOnClickListener(new Button.OnClickListener()
-        {
-        	public void onClick(View v)
-        	{
-        		finish();
-        	}
-        });
-        
-        
-        String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+(1+dateAndTime.get(Calendar.MONTH))+"."+dateAndTime.get(Calendar.YEAR);
-        String currentTime;
-        if (dateAndTime.get(Calendar.MINUTE)<10)
-        	currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
-        else
-        	currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
-      
-        beginDate.setOnClickListener(new View.OnClickListener() {
-			
+
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_add_task);
+
+		task = new Task();
+		task.setRepeatInterval(1);
+		task.setRepeatType(0);
+		task.setPriority(0);
+
+		checkBoxAllDay = (CheckBox)findViewById(R.id.allDay);
+		checkBoxRepeat = (CheckBox)findViewById(R.id.repeat);
+		//     considerPriority = (CheckBox)findViewById(R.id.considerPriority);
+		//    considerTime = (CheckBox)findViewById(R.id.considerTime);
+		titleField = (EditText)findViewById(R.id.title);
+		description = (EditText)findViewById(R.id.description);
+		location = (EditText)findViewById(R.id.location);
+		okButton = (Button)findViewById(R.id.ok);
+		cancelButton = (Button)findViewById(R.id.cancel);
+		beginDate = (Button)findViewById(R.id.beginDate);
+		endDate = (Button)findViewById(R.id.endDate);
+		beginTime = (Button)findViewById(R.id.beginTime);
+		endTime = (Button)findViewById(R.id.endTime);
+		checkBoxAllDay.setOnCheckedChangeListener(this);
+		checkBoxRepeat.setOnCheckedChangeListener(this);
+		checkBoxFill = (CheckBox)findViewById(R.id.fill);
+		checkBoxFill.setOnCheckedChangeListener(this);
+		priorityLabel = (TextView)findViewById(R.id.priorityLabel);
+
+		repeatType1Label = (TextView)findViewById(R.id.repeatType1Label);
+		repeatType2Label = (TextView)findViewById(R.id.repeatType2Label);
+		repeatType2After = (TextView)findViewById(R.id.repeatType2After);
+		repeatType1 = (Spinner)findViewById(R.id.repeatType1);
+		repeatType2 = (Spinner)findViewById(R.id.repeatType2);
+		priority = (Spinner)findViewById(R.id.priority);
+
+		repeatType1.setOnItemSelectedListener(this);
+		repeatType2.setOnItemSelectedListener(this);
+		priority.setOnItemSelectedListener(this);
+
+		okButton.setOnClickListener(new Button.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				readTitle();
+				readDescription();
+				readLocation();
+				MyApplication.tasks.add(task);
+				MyApplication.adapter.notifyDataSetChanged();
+				finish();
+			}
+		}
+		);
+		cancelButton.setOnClickListener(new Button.OnClickListener()
+		{
+			public void onClick(View v)
+			{
+				finish();
+			}
+		});
+
+
+		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+(1+dateAndTime.get(Calendar.MONTH))+"."+dateAndTime.get(Calendar.YEAR);
+		String currentTime;
+		if (dateAndTime.get(Calendar.MINUTE)<10)
+			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
+			else
+				currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
+
+		beginDate.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				new DatePickerDialog(
@@ -168,13 +171,13 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 						beginDatePicker, 
 						dateAndTime.get(Calendar.YEAR),
 						dateAndTime.get(Calendar.MONTH),			
-				        dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
+						dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
 			}
 		});
-        beginDate.setText(currentDate);
-        
-        endDate.setOnClickListener(new View.OnClickListener() {
-			
+		beginDate.setText(currentDate);
+
+		endDate.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				new DatePickerDialog(
@@ -182,13 +185,13 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 						endDatePicker, 
 						dateAndTime.get(Calendar.YEAR),
 						dateAndTime.get(Calendar.MONTH),			
-				        dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
+						dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
 			}
 		});
-        endDate.setText(currentDate);
-        
-        beginTime.setOnClickListener(new View.OnClickListener() {
-			
+		endDate.setText(currentDate);
+
+		beginTime.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				new TimePickerDialog(
@@ -197,13 +200,13 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 						dateAndTime.get(Calendar.HOUR),
 						dateAndTime.get(Calendar.MINUTE),
 						true).show();
-				
+
 			}
 		});
-        beginTime.setText(currentTime);
-        
-        endTime.setOnClickListener(new View.OnClickListener() {
-			
+		beginTime.setText(currentTime);
+
+		endTime.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
 				new TimePickerDialog(
@@ -212,85 +215,85 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 						dateAndTime.get(Calendar.HOUR),
 						dateAndTime.get(Calendar.MINUTE),
 						true).show();
-				
+
 			}
 		});
-        endTime.setText(currentTime);
-    }
-    
-    public void readTitle()
-    {
-    	task.setTitle(TextUtils.htmlEncode(titleField.getText().toString()));
-    }
+		endTime.setText(currentTime);
+	}
 
-       
-    public void readDescription()
-    {
-    	task.setDescirption(TextUtils.htmlEncode(description.getText().toString()));
-    }
-    
-    public void readLocation()
-    {
-    	task.setLocation(TextUtils.htmlEncode(location.getText().toString()));
-    }
-    
-    public void onCheckedChanged(CompoundButton button, boolean isChecked)
-    {
-    	if (button==checkBoxFill)
-    	{
-    		if (isChecked)
-    			task.setFill(true);
-    		else
-    			task.setFill(false);
-    	
-    	}
-    	if (button==checkBoxAllDay)
-    	{
-    		if (isChecked)
-    		{
-    			task.setAllDay(true);
-    			beginTime.setVisibility(View.INVISIBLE);
-    			endTime.setVisibility(View.INVISIBLE);
-    			priority.setVisibility(View.INVISIBLE);
-    			considerPriority.setVisibility(View.INVISIBLE);
-    			considerTime.setVisibility(View.INVISIBLE);
-    			
-    			priorityLabel.setVisibility(View.INVISIBLE);
-    		}
-    		else
-    		{
-    			task.setAllDay(false);
-    			beginTime.setVisibility(View.VISIBLE);
-    			endTime.setVisibility(View.VISIBLE);
-    			priority.setVisibility(View.VISIBLE);
-    			considerPriority.setVisibility(View.VISIBLE);
-    			considerTime.setVisibility(View.VISIBLE);
-    			priorityLabel.setVisibility(View.VISIBLE);
-    		}
-    	}
-    	else if (button == checkBoxRepeat)
-    	{
-    		if (isChecked)
-    		{
-    			task.setRepeat(true);
-    			repeatType1.setVisibility(View.VISIBLE);
-    			repeatType1Label.setVisibility(View.VISIBLE);
-    			repeatType2.setVisibility(View.VISIBLE);
-    			repeatType2Label.setVisibility(View.VISIBLE);
-    			repeatType2After.setVisibility(View.VISIBLE);
-    			
-    		}
-    		else
-    		{
-    			task.setRepeat(false);
-    			repeatType1.setVisibility(View.INVISIBLE);
-    			repeatType1Label.setVisibility(View.INVISIBLE);
-    			repeatType2.setVisibility(View.INVISIBLE);
-    			repeatType2Label.setVisibility(View.INVISIBLE);
-    			repeatType2After.setVisibility(View.INVISIBLE);
-    		}
-    	}
-    /*	else if (button==considerPriority)
+	public void readTitle()
+	{
+		task.setTitle(TextUtils.htmlEncode(titleField.getText().toString()));
+	}
+
+
+	public void readDescription()
+	{
+		task.setDescirption(TextUtils.htmlEncode(description.getText().toString()));
+	}
+
+	public void readLocation()
+	{
+		task.setLocation(TextUtils.htmlEncode(location.getText().toString()));
+	}
+
+	public void onCheckedChanged(CompoundButton button, boolean isChecked)
+	{
+		if (button==checkBoxFill)
+		{
+			if (isChecked)
+				task.setFill(true);
+			else
+				task.setFill(false);
+
+		}
+		if (button==checkBoxAllDay)
+		{
+			if (isChecked)
+			{
+				task.setAllDay(true);
+				beginTime.setVisibility(View.INVISIBLE);
+				endTime.setVisibility(View.INVISIBLE);
+				priority.setVisibility(View.INVISIBLE);
+				considerPriority.setVisibility(View.INVISIBLE);
+				considerTime.setVisibility(View.INVISIBLE);
+
+				priorityLabel.setVisibility(View.INVISIBLE);
+			}
+			else
+			{
+				task.setAllDay(false);
+				beginTime.setVisibility(View.VISIBLE);
+				endTime.setVisibility(View.VISIBLE);
+				priority.setVisibility(View.VISIBLE);
+				considerPriority.setVisibility(View.VISIBLE);
+				considerTime.setVisibility(View.VISIBLE);
+				priorityLabel.setVisibility(View.VISIBLE);
+			}
+		}
+		else if (button == checkBoxRepeat)
+		{
+			if (isChecked)
+			{
+				task.setRepeat(true);
+				repeatType1.setVisibility(View.VISIBLE);
+				repeatType1Label.setVisibility(View.VISIBLE);
+				repeatType2.setVisibility(View.VISIBLE);
+				repeatType2Label.setVisibility(View.VISIBLE);
+				repeatType2After.setVisibility(View.VISIBLE);
+
+			}
+			else
+			{
+				task.setRepeat(false);
+				repeatType1.setVisibility(View.INVISIBLE);
+				repeatType1Label.setVisibility(View.INVISIBLE);
+				repeatType2.setVisibility(View.INVISIBLE);
+				repeatType2Label.setVisibility(View.INVISIBLE);
+				repeatType2After.setVisibility(View.INVISIBLE);
+			}
+		}
+		/*	else if (button==considerPriority)
     	{
     		if (isChecked)
     			task.setConsiderPriority(true);
@@ -304,33 +307,33 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
     		else
     			task.setConsiderTime(false);
     	}*/
-    		
-    }
-    
+
+	}
+
 	public void updateBeginDate()
 	{
 		int day = dateAndTime.get(Calendar.DAY_OF_MONTH);	
 		int month = dateAndTime.get(Calendar.MONTH);
 		int year = dateAndTime.get(Calendar.YEAR);
-		
+
 		String s = ""+day+"."+month+"."+year;
-	
+
 		beginDate.setText(s);	
 		task.setBeginDate(year, month, day);
 	}
-	
+
 	public void updateEndDate()
 	{
 		int day = dateAndTime.get(Calendar.DAY_OF_MONTH);	
 		int month = dateAndTime.get(Calendar.MONTH);
 		int year = dateAndTime.get(Calendar.YEAR);
-		
+
 		String s = ""+day+"."+month+"."+year;
-	
+
 		endDate.setText(s);
 		task.setEndDate(year, month, day);
 	}
-	
+
 	public void updateBeginTime()
 	{
 		int hour = dateAndTime.get(Calendar.HOUR_OF_DAY);
@@ -343,7 +346,7 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 		beginTime.setText(s);
 		task.setBeginTime(hour, minute);
 	}
-	
+
 	public void updateEndTime()
 	{
 		int hour = dateAndTime.get(Calendar.HOUR_OF_DAY);
@@ -356,7 +359,7 @@ public class AddTask extends Activity implements CompoundButton.OnCheckedChangeL
 		endTime.setText(s);
 		task.setEndTime(hour, minute);
 	}
- 	
+
 	public void onItemSelected(AdapterView parent, View v, int position, long id)
 	{
 		if (parent==repeatType1)

@@ -1,21 +1,17 @@
 package com.Android.skeleton;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.GestureDetector;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.GestureDetector.OnGestureListener;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
-
-import java.util.ArrayList;
 
 
 public class Now extends Activity implements OnGestureListener {
@@ -24,10 +20,7 @@ public class Now extends Activity implements OnGestureListener {
 	
 	TabHost tabs;
 	ListView listviewPrio;
-	ArrayList<Task> tasks;
 	int currenttab = 1;
-
-
 
 
 	@Override
@@ -42,6 +35,19 @@ public class Now extends Activity implements OnGestureListener {
 		spec.setContent(R.id.tab1);
 		spec.setIndicator("Add");
 		tabs.addTab(spec);
+		
+		//Adaugare listener pentru cand vrem sa adaugam un task now
+		tabs.getTabWidget().getChildAt(0).setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 Intent intent = new Intent(Now.this, AddTask.class);
+				 startActivity(intent);
+				 Toast.makeText(getApplicationContext(), "Back to square one", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		
 		//Tabul de priority
 		spec=tabs.newTabSpec("tag2");
 		spec.setContent(R.id.tab2);
@@ -60,7 +66,7 @@ public class Now extends Activity implements OnGestureListener {
 		//Default incepem pe priority
 		tabs.setCurrentTab(currenttab);
 
-		tasks = new ArrayList<Task>();
+		ArrayList<Task> tasks = MyApplication.tasks;
 		Task t;
 
 		for(int i = 0; i < 20; i++) {
@@ -73,9 +79,8 @@ public class Now extends Activity implements OnGestureListener {
 
 		listviewPrio = (ListView)findViewById(R.id.tab2);
 	//	listview.setOnTouchListener(this);
-		
-		MyAdapter adapter = new MyAdapter(this, tasks);
-		listviewPrio.setAdapter(adapter);
+		MyApplication.adapter = new MyAdapter(this, tasks);
+		listviewPrio.setAdapter(MyApplication.adapter);
 	}
 
 
