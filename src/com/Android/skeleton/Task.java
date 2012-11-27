@@ -1,11 +1,8 @@
 package com.Android.skeleton;
 
-
 import java.sql.Time;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-
 
 public class Task {
 	
@@ -75,7 +72,7 @@ public class Task {
 	public GregorianCalendar getBeginTimeInGregorian()
 	{
 		return new GregorianCalendar(getBeginDateYear(), 
-									 getEndDateMonth(), 
+									 getBeginDateMonth(), 
 									 getBeginDateDay(), 
 									 getBeginTimeHour(), 
 									 getBeginTimeMinute());
@@ -200,8 +197,8 @@ public class Task {
 	public void setBeginDate(int y, int m, int d)
 	{
 		this.beginDateDay = d;
-		this.beginDateMonth = m;
-		this.beginDateYear = y;
+		this.setBeginDateMonth(m);
+		this.setBeginDateYear(y);
 	}
 	public int getBeginDateYear()
 	{
@@ -218,8 +215,8 @@ public class Task {
 	
 	public void setEndDate(int y, int m, int d)
 	{
-		this.endDateYear = y;
-		this.endDateMonth = m;
+		this.setEndDateYear(y);
+		this.setEndDateMonth(m);
 		this.endDateDay = d;
 	}
 	public int getEndDateYear()
@@ -305,6 +302,22 @@ public class Task {
 
 	public void setTimePriority(float timePriority) {
 		this.timePriority = timePriority;
+	}
+
+	public void setBeginDateYear(int beginDateYear) {
+		this.beginDateYear = beginDateYear;
+	}
+
+	public void setEndDateYear(int endDateYear) {
+		this.endDateYear = endDateYear;
+	}
+
+	public void setBeginDateMonth(int beginDateMonth) {
+		this.beginDateMonth = beginDateMonth;
+	}
+
+	public void setEndDateMonth(int endDateMonth) {
+		this.endDateMonth = endDateMonth;
 	}
 
 	
