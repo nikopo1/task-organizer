@@ -27,111 +27,124 @@
         			android:text="@string/titleMessage"
         			android:textSize="10sp"
     			/>
-    	<EditText 
-	        android:id="@+id/title"
-    		android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:textSize="10sp"	
-    		android:inputType="text"
-    	/>
-    </LinearLayout>
+    			<EditText 
+	        		android:id="@+id/title"
+    				android:layout_width="fill_parent"
+    				android:layout_height="wrap_content"
+    				android:textSize="10sp"	
+    				android:inputType="text"
+    			/>
+    		</LinearLayout>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tools="http://schemas.android.com/tools"
-	    android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/titleLayout"
-	    android:id="@+id/allDayRepeatLayout"
-	>
-		<CheckBox 
-	    	android:id="@+id/allDay"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/allDayMessage"
-    		android:textSize="10sp"
-		/>
-		<CheckBox 
-    		android:id="@+id/repeat"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/repeatMessage"
-    		android:textSize="10sp"
-		/>
-		<CheckBox
-		    android:id="@+id/fill"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:text="@string/fillMessage"
-		    android:textSize="10sp"
-		/>
-	</LinearLayout>
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    		xmlns:tools="http://schemas.android.com/tools"
+	    		android:orientation="horizontal"
+	    		android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"
+	    		android:layout_below="@id/titleLayout"
+	    		android:id="@+id/allDayRepeatLayout"
+				>
+				<CheckBox 
+	    			android:id="@+id/allDay"
+    				android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:text="@string/allDayMessage"
+    				android:textSize="10sp"
+				/>
+				<CheckBox 
+    				android:id="@+id/repeat"
+    				android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:text="@string/repeatMessage"
+    				android:textSize="10sp"
+				/>
+				<CheckBox
+		    		android:id="@+id/fill"
+		    		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:text="@string/fillMessage"
+		    		android:textSize="10sp"
+				/>
+			</LinearLayout>
 	
-	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tool="http://schemas.android.com/tools"   
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/allDayRepeatLayout"
-	    android:id="@+id/dateTimeLayout"
-	    >
-	    <Button
-	        android:id="@+id/beginDate"
-	        android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:textSize="10sp"
-		    android:layout_alignParentLeft="true" 
-	    />
-	    <Button
-	        android:id="@+id/beginTime"
-	        android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:textSize="10sp"
-		    android:layout_toRightOf="@id/beginDate"
-	    />
+			<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    		xmlns:tool="http://schemas.android.com/tools"   
+	    		android:layout_width="fill_parent"
+	    		android:layout_height="wrap_content"
+	    		android:layout_below="@id/allDayRepeatLayout"
+	    		android:id="@+id/dateTimeLayout"
+	    		>
+	    		<Button
+	        		android:id="@+id/beginDate"
+	        		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:textSize="10sp"
+		    		android:layout_alignParentLeft="true" 
+	    		/>
+	    		<Button
+	        		android:id="@+id/beginTime"
+	        		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:textSize="10sp"
+		    		android:layout_toRightOf="@id/beginDate"
+	    		/>
+			    
+			    <Button
+	        		android:id="@+id/endDate"
+	        		style="@style/AppTheme"
+	        		android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content"
+	        		android:layout_alignParentRight="true"
+	        		android:textSize="10sp" />
+	
+			     <Button
+			        android:id="@+id/endTime"
+	        		android:layout_width="wrap_content"
+		    		android:layout_height="wrap_content"
+		    		android:textSize="10sp"
+		    		android:layout_toLeftOf="@id/endDate"
+	    		/>	   
+			</RelativeLayout>
 	    
-	    <Button
-	        android:id="@+id/endDate"
-	        style="@style/AppTheme"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:textSize="10sp" />
-
-	     <Button
-	        android:id="@+id/endTime"
-	        android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:textSize="10sp"
-		    android:layout_toLeftOf="@id/endDate"
-	    />	   
-	</RelativeLayout>
+			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    	
+		    	xmlns:tool="http://schemas.android.com/tools"
+			    android:orientation="horizontal"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_below="@id/dateTimeLayout"
+			    android:id="@+id/repeatTypeLayout"
+			    >
+			    <TextView
+	        		android:id="@+id/repeatType1Label"
+	        		android:layout_width="wrap_content"
+	        		android:layout_height="wrap_content"
+	        		android:text="@string/repeatType1Message"
+	        		android:textSize="10sp"
+	        		android:visibility="invisible"
+	    		/>
+	    		<Spinner 
+	        		android:id="@+id/repeatType1"
+	        		android:layout_width="wrap_content" 
+	        		android:layout_height="wrap_content"
+	        		android:drawSelectorOnTop="true"
+	        		android:gravity="left"
+	        		android:textSize="5sp"
+	    			android:visibility="invisible"
+	    			android:entries="@array/repeatType1Values"
+	    		/>
+	    		
+	    </LinearLayout>
 	    
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:tool="http://schemas.android.com/tools"
 	    android:orientation="horizontal"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/dateTimeLayout"
-	    android:id="@+id/repeatTypeLayout"
-	    >
-	    <TextView
-	        android:id="@+id/repeatType1Label"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/repeatType1Message"
-	        android:textSize="10sp"
-	        android:visibility="invisible"
-	    />
-	    <Spinner 
-	        android:id="@+id/repeatType1"
-	        android:layout_width="wrap_content" 
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="true"
-	        android:gravity="left"
-	        android:textSize="5sp"
-	    	android:visibility="invisible"
-	    	android:entries="@array/repeatType1Values"
-	    />
+	    android:layout_below="@id/repeatTypeLayout"
+	    android:id="@+id/repeatTypeLayout2"
+	    >  
+	    
 	    <TextView
 	        android:id="@+id/repeatType2Label"
 	        android:layout_width="wrap_content"
@@ -152,7 +165,7 @@
 	        android:visibility="invisible"
 	        android:entries="@array/repeatType2Values"
 	    />
-	    <TextView
+	     <TextView
 	        android:id="@+id/repeatType2After"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
@@ -169,7 +182,7 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:id="@+id/descriptionLayout"
-	    android:layout_below="@id/repeatTypeLayout"
+	    android:layout_below="@id/repeatTypeLayout2"
 	 	>
 	    <TextView
 		    android:id="@+id/descriptionLabel"
@@ -275,23 +288,23 @@
 	</LinearLayout>
 	
 -->	
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools"
-    androidrientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/considerTimeLayout"
-    android:layout_below="@id/priorityLayout"
->
- <CheckBox 
-    android:id="@+id/considerTime"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/considerTimeMessage"
-    android:textSize="10sp"
-    android:visibility = "invisible"
-/>
-</LinearLayout>
+ 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    			xmlns:tool="http://schemas.android.com/tools"
+    			androidrientation="horizontal"
+    			android:layout_width="fill_parent"
+    			android:layout_height="wrap_content"
+    			android:id="@+id/considerTimeLayout"
+    			android:layout_below="@id/priorityLayout"
+				>
+ 				<CheckBox 
+    				android:id="@+id/considerTime"
+    				android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:text="@string/considerTimeMessage"
+    				android:textSize="10sp"
+    				android:visibility = "invisible"
+				/>
+			</LinearLayout>
 	</RelativeLayout>
 	
 	</ScrollView>
