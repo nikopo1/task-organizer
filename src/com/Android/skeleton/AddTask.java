@@ -154,7 +154,7 @@ AdapterView.OnItemSelectedListener{
 		});
 
 
-		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
+		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+(1+dateAndTime.get(Calendar.MONTH))+"."+dateAndTime.get(Calendar.YEAR);
 		String currentTime;
 		if (dateAndTime.get(Calendar.MINUTE)<10)
 			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
@@ -272,8 +272,8 @@ AdapterView.OnItemSelectedListener{
 				beginTime.setVisibility(View.INVISIBLE);
 				endTime.setVisibility(View.INVISIBLE);
 				priority.setVisibility(View.INVISIBLE);
-				/*considerPriority.setVisibility(View.INVISIBLE);
-				considerTime.setVisibility(View.INVISIBLE);*/
+				considerPriority.setVisibility(View.INVISIBLE);
+				considerTime.setVisibility(View.INVISIBLE);
 
 				priorityLabel.setVisibility(View.INVISIBLE);
 			}
@@ -283,8 +283,8 @@ AdapterView.OnItemSelectedListener{
 				beginTime.setVisibility(View.VISIBLE);
 				endTime.setVisibility(View.VISIBLE);
 				priority.setVisibility(View.VISIBLE);
-/*				considerPriority.setVisibility(View.VISIBLE);
-				considerTime.setVisibility(View.VISIBLE);*/
+				considerPriority.setVisibility(View.VISIBLE);
+				considerTime.setVisibility(View.VISIBLE);
 				priorityLabel.setVisibility(View.VISIBLE);
 			}
 		}
