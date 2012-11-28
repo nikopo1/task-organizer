@@ -3,6 +3,7 @@ package com.Android.skeleton;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,10 @@ public class MyAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	private ArrayList<Task> taskArray = new ArrayList<Task>();
-
+	public boolean allDayEnable = false; 
+	
+	
+	
 	public MyAdapter(Context context) {
 		mInflater = LayoutInflater.from(context);
 	}
@@ -65,6 +69,11 @@ public class MyAdapter extends BaseAdapter {
 		holder.text.setText(interval);
 		holder.text2.setText(t.getTitle());
 
+		if(allDayEnable && t.getAllDay())
+			convertView.setBackgroundColor(Color.GRAY);
+		else
+			convertView.setBackgroundColor(Color.BLACK);
+		
 		return convertView;
 	}
 

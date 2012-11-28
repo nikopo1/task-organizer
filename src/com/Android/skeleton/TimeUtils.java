@@ -1,4 +1,5 @@
 package com.Android.skeleton;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -68,28 +69,7 @@ public class TimeUtils
 		}
 		return false;
 	}
-	public static boolean isBeforeOrEqConsideringYMD(GregorianCalendar date1, GregorianCalendar date2)
-	{
-		if(date2.get(Calendar.YEAR)>date1.get(Calendar.YEAR))
-		{
-			return true;
-		}
-		else if(date2.get(Calendar.YEAR)==date1.get(Calendar.YEAR))
-		{
-			if(date2.get(Calendar.MONTH)>date1.get(Calendar.MONTH))
-			{
-				return true;
-			}
-			else if(date2.get(Calendar.MONTH)==date1.get(Calendar.MONTH))
-			{
-				if(date2.get(Calendar.DAY_OF_MONTH)>=date1.get(Calendar.DAY_OF_MONTH))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+	
 	private static float transformMinutesInHours(int minutes)
 	{
 		return (float) (minutes/60.0);

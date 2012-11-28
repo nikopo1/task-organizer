@@ -20,16 +20,19 @@
 			<ListView android:id="@+id/tab2"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"	/>
-			<TextView android:id="@+id/tab3"
+			<ListView android:id="@+id/tab3"
 				android:text="Stub. To be continued with day view from Emanuel."
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent" 
 				android:layout_centerHorizontal="true" />
-			<TextView android:id="@+id/tab4"
-				android:text="Stub. To be continued with all events view from me."
+			<ListView android:id="@+id/tab4"
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent" 
 				android:layout_centerHorizontal="true" />
 		</FrameLayout>
 	</TabHost>
 </LinearLayout>
+
+<!--
+ android:text="Stub. To be continued with all events view from me."
+ -->

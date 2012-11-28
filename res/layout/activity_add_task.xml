@@ -132,19 +132,6 @@
 	    	android:visibility="invisible"
 	    	android:entries="@array/repeatType1Values"
 	    />
-	    
-	    
-	</LinearLayout>
-	
-		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tool="http://schemas.android.com/tools"
-	    android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/repeatTypeLayout"
-	    android:id="@+id/repeatTypeLayout2"
-	    >
-	    
 	    <TextView
 	        android:id="@+id/repeatType2Label"
 	        android:layout_width="wrap_content"
@@ -182,7 +169,7 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:id="@+id/descriptionLayout"
-	    android:layout_below="@id/repeatTypeLayout2"
+	    android:layout_below="@id/repeatTypeLayout"
 	 	>
 	    <TextView
 		    android:id="@+id/descriptionLabel"

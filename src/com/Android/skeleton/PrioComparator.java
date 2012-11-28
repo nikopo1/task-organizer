@@ -1,4 +1,5 @@
 package com.Android.skeleton;
+
 import java.util.Comparator;
 
 public class PrioComparator implements Comparator
