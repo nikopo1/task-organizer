@@ -7,8 +7,8 @@ import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
-import javax.swing.text.ChangedCharSetException;
+//import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
+//import javax.swing.text.ChangedCharSetException;
 
 
 public class Algorithm 
