@@ -104,7 +104,8 @@ public class Now extends Activity implements OnGestureListener {
 				t.setRepeatType(Integer.parseInt(ois.readLine()));
 				t.setRepeatInterval(Integer.parseInt(ois.readLine()));
 				t.setFill(Boolean.parseBoolean(ois.readLine()));
-				t.setTaskType(Integer.parseInt(ois.readLine()));
+				// in functie de campurile completate mai sus se completeaza automat task type
+				// t.setTaskType(Integer.parseInt(ois.readLine()));
 				
 				MyApplication.tasks.add(t);
 			}

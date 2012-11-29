@@ -14,7 +14,7 @@ public class Algorithm
 	 * Taskurile nu se suprapun
 	 * Repetitie zilnica cu durata de 2 zile
 	*/
-	public static boolean CONSIDER_TIME=false;
+	public static boolean CONSIDER_TIME=true;
 	public static int PROGRAMMED_DAY_TASK_NUMBER=3;
 	public static int FROM_HOUR_OF_DAY=8;
 	
@@ -303,6 +303,13 @@ public class Algorithm
 		int projectIndex=0;
 		int huntingFor=1;
 		int changedEvent=0;
+		if(projects.size()==0)
+		{
+			for(Task t : events) {
+				result.add(t);
+			}
+			return;
+		}
 		for(int i=0;i<day.size();i++)
 		{
 			//daca sunt in intervalul in care il las si pe el sa se odihneasca()

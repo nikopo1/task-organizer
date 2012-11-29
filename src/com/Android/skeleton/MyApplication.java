@@ -30,15 +30,9 @@ public class MyApplication {
 	
 	public static void init()
 	{	
-		priotasks.clear();
+		//priotasks.clear();
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
-		daytasks.clear();
-		daytasks.addAll(alg.getAllDayDisplayTasks(tasks));
-		for(Task task : alg.getTodaysTasks(tasks))
-		{
-			if( !task.getAllDay())
-				daytasks.add(task);
-		}
+		alg.organizeDay(tasks, daytasks);
 		
 
 		prioadapter.notifyDataSetChanged();
@@ -180,15 +174,7 @@ public class MyApplication {
 		
 		
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
-		daytasks.clear();
-		daytasks.addAll(alg.getAllDayDisplayTasks(tasks));
-		for(Task task : alg.getTodaysTasks(tasks))
-		{
-			if( !task.getAllDay())
-				daytasks.add(task);
-		}
-		
-		
+		alg.organizeDay(tasks, daytasks);
 
 		
 		//priotasks.add(t1);
