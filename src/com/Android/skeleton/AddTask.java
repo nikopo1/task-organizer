@@ -154,7 +154,7 @@ AdapterView.OnItemSelectedListener{
 		});
 
 
-		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+(1+dateAndTime.get(Calendar.MONTH))+"."+dateAndTime.get(Calendar.YEAR);
+		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
 		String currentTime;
 		if (dateAndTime.get(Calendar.MINUTE)<10)
 			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
@@ -256,8 +256,6 @@ AdapterView.OnItemSelectedListener{
 
 	public void onCheckedChanged(CompoundButton button, boolean isChecked)
 	{
-
-		
 		if (button==checkBoxFill)
 		{
 			if (isChecked)
@@ -266,45 +264,32 @@ AdapterView.OnItemSelectedListener{
 				task.setFill(false);
 
 		}
-		
 		if (button==checkBoxAllDay)
 		{
-			
 			if (isChecked)
 			{
-				
 				task.setAllDay(true);
 				beginTime.setVisibility(View.INVISIBLE);
 				endTime.setVisibility(View.INVISIBLE);
-				
 				priority.setVisibility(View.INVISIBLE);
-				
-				//considerPriority.setVisibility(View.INVISIBLE);
-				
-				//considerTime.setVisibility(View.INVISIBLE);
+				/*considerPriority.setVisibility(View.INVISIBLE);
+				considerTime.setVisibility(View.INVISIBLE);*/
 
 				priorityLabel.setVisibility(View.INVISIBLE);
-				
 			}
 			else
 			{
 				task.setAllDay(false);
 				beginTime.setVisibility(View.VISIBLE);
 				endTime.setVisibility(View.VISIBLE);
-				
 				priority.setVisibility(View.VISIBLE);
-				
-				//considerPriority.setVisibility(View.VISIBLE);
-				
-				//considerTime.setVisibility(View.VISIBLE);
+			/*	considerPriority.setVisibility(View.VISIBLE);
+				considerTime.setVisibility(View.VISIBLE);*/
 				priorityLabel.setVisibility(View.VISIBLE);
-				
 			}
-			
 		}
 		else if (button == checkBoxRepeat)
 		{
-			
 			if (isChecked)
 			{
 				task.setRepeat(true);
@@ -324,9 +309,7 @@ AdapterView.OnItemSelectedListener{
 				repeatType2Label.setVisibility(View.INVISIBLE);
 				repeatType2After.setVisibility(View.INVISIBLE);
 			}
-			
 		}
-		
 		/*	else if (button==considerPriority)
     	{
     		if (isChecked)
