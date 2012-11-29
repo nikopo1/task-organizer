@@ -1,5 +1,4 @@
 package com.Android.skeleton;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -58,53 +57,53 @@ public class TaskUtils
 	 * In cazul in care una din zilele de start sau de end se afla in ziua curenta
 	 * firstOrLast = false pt ziua de start si true pt zua de sfarsit
 	 */
-	public static boolean isDueToday(Task t,Boolean singleDay,Boolean firstOrLast, Boolean fill)
+	public static boolean isDueToday(TaskWrapper tw)
 	{
-		//CAZ 1
+		Task t=tw.getTask();
 		GregorianCalendar  start = t.getBeginTimeInGregorian();
 		GregorianCalendar end = t.getEndTimeInGregorian();
 		GregorianCalendar startPlusOne = t.getBeginTimeInGregorian();
 		startPlusOne.add(Calendar.DAY_OF_MONTH,1);
-		
+		//CAZ 1
 		if(TimeUtils.isInSameDay(start,end))
 		{
 			if(TimeUtils.isInSameDay(new GregorianCalendar(),t.getEndTimeInGregorian()))
 			{
-				singleDay=true;
+				tw.setSameDay(true);
 				return true;
 			}
 		}
+		//CAZ 2
 		else if(TimeUtils.isInSameDay(startPlusOne,end))
 		{
+			
 			if(TimeUtils.isInSameDay(new GregorianCalendar(),t.getBeginTimeInGregorian()))
 			{
 				return true;
 			}
 			if(TimeUtils.isInSameDay(new GregorianCalendar(),t.getEndTimeInGregorian()))
 			{
-				firstOrLast=true;
+				tw.setFirstOrLast(true);
 				return true;
 			}
 		}
+		//CAZ 3
 		else
 		{
 			GregorianCalendar now = new GregorianCalendar();
-			if(now.after(start) && now.before(end))
+			if(TimeUtils.isInSameDay(now,start))
 			{
-				if(TimeUtils.isInSameDay(now,start))
-				{
+				return true;
+			}
+			else if(TimeUtils.isInSameDay(now, end))
+			{
+				tw.setFirstOrLast(true);
+				return true;
+			}
+			else if(now.after(start) && now.before(end))
+			{
+					tw.setFill(true);
 					return true;
-				}
-				else if(TimeUtils.isInSameDay(now, end))
-				{
-					firstOrLast=true;
-					return true;
-				}
-				else
-				{
-					fill=true;
-					return true;
-				}
 			}
 		}
 		return false;

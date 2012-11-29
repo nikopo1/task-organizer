@@ -1,16 +1,10 @@
 package com.Android.skeleton;
 
-
-import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-
-
-public class Task implements Serializable{
-	
-//	public static final long serialVersionUID = 42L;
+public class Task {
 	
 	// titlul task-ului
 	private String title;
@@ -78,7 +72,7 @@ public class Task implements Serializable{
 	public GregorianCalendar getBeginTimeInGregorian()
 	{
 		return new GregorianCalendar(getBeginDateYear(), 
-									 getEndDateMonth(), 
+									 getBeginDateMonth(), 
 									 getBeginDateDay(), 
 									 getBeginTimeHour(), 
 									 getBeginTimeMinute());
@@ -203,8 +197,8 @@ public class Task implements Serializable{
 	public void setBeginDate(int y, int m, int d)
 	{
 		this.beginDateDay = d;
-		this.beginDateMonth = m;
-		this.beginDateYear = y;
+		this.setBeginDateMonth(m);
+		this.setBeginDateYear(y);
 	}
 	public int getBeginDateYear()
 	{
@@ -221,8 +215,8 @@ public class Task implements Serializable{
 	
 	public void setEndDate(int y, int m, int d)
 	{
-		this.endDateYear = y;
-		this.endDateMonth = m;
+		this.setEndDateYear(y);
+		this.setEndDateMonth(m);
 		this.endDateDay = d;
 	}
 	public int getEndDateYear()
@@ -288,7 +282,7 @@ public class Task implements Serializable{
 		return taskType;
 	}
 
-	public void setTaskType(int taskType) {
+	private void setTaskType(int taskType) {
 		this.taskType = taskType;
 	}
 
@@ -308,6 +302,22 @@ public class Task implements Serializable{
 
 	public void setTimePriority(float timePriority) {
 		this.timePriority = timePriority;
+	}
+
+	public void setBeginDateYear(int beginDateYear) {
+		this.beginDateYear = beginDateYear;
+	}
+
+	public void setEndDateYear(int endDateYear) {
+		this.endDateYear = endDateYear;
+	}
+
+	public void setBeginDateMonth(int beginDateMonth) {
+		this.beginDateMonth = beginDateMonth;
+	}
+
+	public void setEndDateMonth(int endDateMonth) {
+		this.endDateMonth = endDateMonth;
 	}
 
 	
