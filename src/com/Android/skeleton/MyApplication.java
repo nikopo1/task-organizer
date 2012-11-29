@@ -30,14 +30,13 @@ public class MyApplication {
 	
 	public static void init()
 	{	
-		//priotasks.clear();
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
 		alg.organizeDay(tasks, daytasks);
+		alg.organizeAll(tasks, alltasks);
 		
-
 		prioadapter.notifyDataSetChanged();
 		dayadapter.notifyDataSetChanged();
-		
+		alladapter.notifyDataSetChanged();
 	}
 	
 	public static void addTask(Task t) {
@@ -175,12 +174,14 @@ public class MyApplication {
 		
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
 		alg.organizeDay(tasks, daytasks);
+		alg.organizeAll(tasks, alltasks);
 
 		
 		//priotasks.add(t1);
 		
 		prioadapter.notifyDataSetChanged();
 		dayadapter.notifyDataSetChanged();
+		alladapter.notifyDataSetChanged();
 		
 		//alltasks = alg.organizeAll(tasks);
 		//alladapter.notifyDataSetChanged();

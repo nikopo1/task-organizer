@@ -42,6 +42,7 @@ public class Now extends Activity implements OnGestureListener {
 	TabHost tabs;
 	ListView listviewPrio;
 	ListView listviewDay;
+	ListView listviewAll;
 	int currenttab = 1;
 	
 
@@ -144,7 +145,7 @@ public class Now extends Activity implements OnGestureListener {
 			public void onClick(View v) {
 				 Intent intent = new Intent(Now.this, AddTask.class);
 				 startActivity(intent);
-				 Toast.makeText(getApplicationContext(), "Back to square one", Toast.LENGTH_SHORT).show();
+				 //Toast.makeText(getApplicationContext(), "Back to square one", Toast.LENGTH_SHORT).show();
 			}
 		});
 		
@@ -166,17 +167,6 @@ public class Now extends Activity implements OnGestureListener {
 		tabs.addTab(spec);
 		//Default incepem pe priority
 		tabs.setCurrentTab(currenttab);
-
-		Task t;
-		/*
-		for(int i = 0; i < 20; i++) {
-			t = new Task();
-			t.setBeginTime( i%24, 30);
-			t.setEndTime( (i+2)%24, 45);
-			t.setTitle("Task "+i);
-			tasks.add(t);
-		}
-		*/
 		
 
 		listviewPrio = (ListView)findViewById(R.id.tab2);
@@ -188,6 +178,9 @@ public class Now extends Activity implements OnGestureListener {
 		MyApplication.dayadapter.allDayEnable = true;
 		listviewDay.setAdapter(MyApplication.dayadapter);
 		
+		listviewAll = (ListView)findViewById(R.id.tab4);
+		MyApplication.alladapter = new MyAdapter(this, MyApplication.alltasks);
+		listviewAll.setAdapter(MyApplication.alladapter); 
 		
 		
 		MyApplication.init();
@@ -224,7 +217,6 @@ public class Now extends Activity implements OnGestureListener {
 	public boolean onScroll(MotionEvent arg0, MotionEvent arg1, float arg2,
 			float arg3) {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "muie", Toast.LENGTH_SHORT).show();
 		return false;
 	}
 

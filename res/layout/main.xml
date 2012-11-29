@@ -21,7 +21,6 @@
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent"	/>
 			<ListView android:id="@+id/tab3"
-				android:text="Stub. To be continued with day view from Emanuel."
 				android:layout_width="fill_parent"
 				android:layout_height="fill_parent" 
 				android:layout_centerHorizontal="true" />
