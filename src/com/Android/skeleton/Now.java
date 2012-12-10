@@ -60,11 +60,14 @@ public class Now extends Activity implements OnGestureListener {
 		
 		int taskNo = 0; 
 		try {
-			DataInputStream ois = new DataInputStream(openFileInput("taskNo.tm"));
-			taskNo = ois.readInt();
+			//DataInputStream ois = new DataInputStream(openFileInput("taskNo.tm"));
+			BufferedReader ois = new BufferedReader(new InputStreamReader(openFileInput("taskNo.tm")));
+			//taskNo = ois.readInt();
+			taskNo = Integer.parseInt(ois.readLine());
 			ois.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			
 		}
 		
 		try {
@@ -79,11 +82,13 @@ public class Now extends Activity implements OnGestureListener {
 				t.setRepeat(Boolean.parseBoolean(ois.readLine()));
 				t.setDescirption(ois.readLine());
 				t.setLocation(ois.readLine());
+				
 				t.setPriority(Integer.parseInt(ois.readLine()));
 				t.setTimePriority((Float.parseFloat(ois.readLine())));
 				t.setTotalPriority((Float.parseFloat(ois.readLine())));
 				t.setConsiderPriority(Boolean.parseBoolean(ois.readLine()));
 				t.setConsiderTime(Boolean.parseBoolean(ois.readLine()));
+				
 				t.setBeginDate(
 						Integer.parseInt(ois.readLine()), 
 						Integer.parseInt(ois.readLine()),
@@ -103,6 +108,7 @@ public class Now extends Activity implements OnGestureListener {
 						Integer.parseInt(ois.readLine())
 						);
 				t.setRepeatType(Integer.parseInt(ois.readLine()));
+				
 				t.setRepeatInterval(Integer.parseInt(ois.readLine()));
 				t.setFill(Boolean.parseBoolean(ois.readLine()));
 				// in functie de campurile completate mai sus se completeaza automat task type
