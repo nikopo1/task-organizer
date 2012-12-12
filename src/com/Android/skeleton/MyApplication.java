@@ -28,6 +28,14 @@ public class MyApplication {
 	public static ArrayList<Task> daytasks = new ArrayList<Task>();
 	public static MyAdapter dayadapter;
 	
+	// daca e editare/vizualizare de task deja existent
+	// false - daca este adaugare de nou task
+	public static boolean edit;
+	
+	// id-ul task-ului pe care vreau sa-l editez/vizualizez
+	// daca nu e editare/vizualizare, nu ma intereseaza valoarea
+	public static int IDtask;
+	
 	public static void init()
 	{	
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);

@@ -40,6 +40,7 @@ AdapterView.OnItemSelectedListener{
 	Button endTime;	
 	TextView selection;
 	TextView priorityLabel;
+	TextView titleLabel;
 	Task task;
 
 	Spinner repeatType1;
@@ -98,15 +99,24 @@ AdapterView.OnItemSelectedListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_task);
 
-		task = new Task();
-		task.setRepeatInterval(1);
-		task.setRepeatType(0);
-		task.setPriority(0);
+		if (MyApplication.edit)
+		{
+			task = MyApplication.tasks.get(MyApplication.IDtask);
+		}
+		else
+		{
+			task = new Task();
+			task.setRepeatInterval(1);
+			task.setRepeatType(0);
+			task.setPriority(0);
+			task.setAllDay(false);
+			task.setRepeat(false);
+			task.setFill(false);
+		}
+		
 
 		checkBoxAllDay = (CheckBox)findViewById(R.id.allDay);
 		checkBoxRepeat = (CheckBox)findViewById(R.id.repeat);
-		//     considerPriority = (CheckBox)findViewById(R.id.considerPriority);
-		//    considerTime = (CheckBox)findViewById(R.id.considerTime);
 		titleField = (EditText)findViewById(R.id.title);
 		description = (EditText)findViewById(R.id.description);
 		location = (EditText)findViewById(R.id.location);
@@ -121,14 +131,14 @@ AdapterView.OnItemSelectedListener{
 		checkBoxFill = (CheckBox)findViewById(R.id.fill);
 		checkBoxFill.setOnCheckedChangeListener(this);
 		priorityLabel = (TextView)findViewById(R.id.priorityLabel);
-
+		titleLabel = (TextView)findViewById(R.id.labelTitle);
 		repeatType1Label = (TextView)findViewById(R.id.repeatType1Label);
 		repeatType2Label = (TextView)findViewById(R.id.repeatType2Label);
 		repeatType2After = (TextView)findViewById(R.id.repeatType2After);
 		repeatType1 = (Spinner)findViewById(R.id.repeatType1);
 		repeatType2 = (Spinner)findViewById(R.id.repeatType2);
 		priority = (Spinner)findViewById(R.id.priority);
-
+		priority.setSelection(2);
 		repeatType1.setOnItemSelectedListener(this);
 		repeatType2.setOnItemSelectedListener(this);
 		priority.setOnItemSelectedListener(this);
@@ -140,8 +150,23 @@ AdapterView.OnItemSelectedListener{
 				readTitle();
 				readDescription();
 				readLocation();
-				MyApplication.addTask(task);
-				finish();
+				if (task.getTitle().equals(""))
+				{
+					// TODO : ce faci cand nu ai titlul completat
+					// TODO: ce alte conditii mai pui
+				}
+				else
+				{
+					if (MyApplication.edit)
+					{
+						
+					}
+					else
+					{
+						MyApplication.addTask(task);
+					}
+					finish();
+				}
 			}
 		}
 		);
@@ -154,13 +179,49 @@ AdapterView.OnItemSelectedListener{
 		});
 
 
-		String currentDate = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
-		String currentTime;
-		if (dateAndTime.get(Calendar.MINUTE)<10)
-			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
+		String beginDateValue, endDateValue, beginTimeValue, endTimeValue;
+		if (MyApplication.edit)
+		{
+			beginDateValue = task.getBeginDateDay()+"."+task.getBeginDateMonth()+"."+task.getBeginDateYear();
+			endDateValue = task.getEndDateDay()+"."+task.getEndDateMonth()+"."+task.getEndDateYear();
+			
+			if (task.getBeginTimeMinute()<10)
+				beginTimeValue = task.getBeginTimeHour()+":0"+task.getBeginTimeMinute();
+			else
+				beginTimeValue = task.getBeginTimeHour()+":"+task.getBeginTimeMinute();
+			
+			if (task.getEndTimeMinute()<10)
+				endTimeValue = task.getEndTimeHour()+":0"+task.getEndTimeMinute();
+			else
+				endTimeValue = task.getEndTimeHour()+":"+task.getEndTimeMinute();			
+		}
 		else
-			currentTime = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
-
+		{
+			beginDateValue = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
+			task.setBeginDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), dateAndTime.get(Calendar.DAY_OF_MONTH));
+			endDateValue = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
+			task.setEndDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), dateAndTime.get(Calendar.DAY_OF_MONTH));
+								
+			if (dateAndTime.get(Calendar.MINUTE)<10)
+				beginTimeValue = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
+			else
+				beginTimeValue = dateAndTime.get(Calendar.HOUR_OF_DAY)+":"+dateAndTime.get(Calendar.MINUTE);
+			
+			task.setBeginTime(dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE));
+			
+			if (dateAndTime.get(Calendar.MINUTE)<10)
+			{
+				endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":0"+dateAndTime.get(Calendar.MINUTE);
+				task.setEndTime(dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE));
+			}
+			else
+			{
+				endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":"+dateAndTime.get(Calendar.MINUTE);
+				task.setEndTime((dateAndTime.get(Calendar.HOUR_OF_DAY)+1), dateAndTime.get(Calendar.MINUTE));
+			}
+		
+		}
+		
 		beginDate.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -173,7 +234,8 @@ AdapterView.OnItemSelectedListener{
 						dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
 			}
 		});
-		beginDate.setText(currentDate);
+		beginDate.setText(beginDateValue);
+		
 
 		endDate.setOnClickListener(new View.OnClickListener() {
 
@@ -187,8 +249,8 @@ AdapterView.OnItemSelectedListener{
 						dateAndTime.get(Calendar.DAY_OF_MONTH)).show(); 			                          
 			}
 		});
-		endDate.setText(currentDate);
-
+		endDate.setText(endDateValue);
+	
 		beginTime.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -202,39 +264,25 @@ AdapterView.OnItemSelectedListener{
 
 			}
 		});
-		beginTime.setText(currentTime);
-
+		beginTime.setText(beginTimeValue);
+		
+		
 		endTime.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+				
 				new TimePickerDialog(
 						AddTask.this, 
 						endTimePicker,
 						dateAndTime.get(Calendar.HOUR),
 						dateAndTime.get(Calendar.MINUTE),
 						true).show();
+				
 
 			}
 		});
-		endTime.setText(currentTime);
-
-		updateBeginDate();
-		updateEndDate();
-		updateBeginTime();
-		updateEndTime();
-
-		task.setPriority(0);
-		task.setRepeatType(0);
-		task.setRepeatInterval(1);
-
-		task.setAllDay(false);
-		task.setRepeat(false);
-		task.setFill(false);
-		
-
-		
-		
+		endTime.setText(endTimeValue);
 		
 	}
 
