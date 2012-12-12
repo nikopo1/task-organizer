@@ -1,7 +1,6 @@
 package com.Android.skeleton;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -183,6 +183,19 @@ public class Now extends Activity implements OnGestureListener {
 		MyApplication.dayadapter = new MyAdapter(this, MyApplication.daytasks);
 		MyApplication.dayadapter.allDayEnable = true;
 		listviewDay.setAdapter(MyApplication.dayadapter);
+		
+		listviewDay.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView parentView, View childView, int position, long id)
+			{
+				 MyApplication.edit = true;
+				 MyApplication.IDtask = position; 
+				 Intent intent = new Intent(Now.this, AddTask.class);
+				 startActivity(intent);
+			}
+
+			});
 		
 		listviewAll = (ListView)findViewById(R.id.tab4);
 		MyApplication.alladapter = new MyAdapter(this, MyApplication.alltasks);
