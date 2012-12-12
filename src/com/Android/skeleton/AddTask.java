@@ -104,7 +104,7 @@ AdapterView.OnItemSelectedListener{
 		if (MyApplication.edit)
 		{
 			task = MyApplication.tasks.get(MyApplication.IDtask);
-			priority.setSelection(task.getPriority()-1);
+		/*	priority.setSelection(task.getPriority()-1);
 			
 			checkBoxFill.setChecked(task.getFill());
 			checkBoxAllDay.setChecked(task.getAllDay());
@@ -120,7 +120,7 @@ AdapterView.OnItemSelectedListener{
 				repeatType2.setSelection(task.getRepeatInterval()-1);
 				
 				
-				
+		
 				if (task.getRepeatType()==0)
 					repeatType2After.setText("zile");
 				else if (task.getRepeatType()==1)
@@ -130,7 +130,7 @@ AdapterView.OnItemSelectedListener{
 				else if (task.getRepeatType()==3)
 					repeatType2After.setText("ani");
 			}
-			
+			*/
 			
 		}
 		else
@@ -201,6 +201,7 @@ AdapterView.OnItemSelectedListener{
 					}
 					titleLabel.setTextColor(Color.BLACK);
 					errorLabel.setVisibility(View.GONE);
+					MyApplication.edit=false;
 					finish();
 					
 				}
@@ -213,6 +214,7 @@ AdapterView.OnItemSelectedListener{
 			{
 				titleLabel.setTextColor(Color.BLACK);
 				errorLabel.setVisibility(View.GONE);
+				MyApplication.edit=false;
 				finish();
 			}
 		});
@@ -346,6 +348,39 @@ AdapterView.OnItemSelectedListener{
 			}
 		});
 		endTime.setText(endTimeValue);
+		
+		if (MyApplication.edit)
+		{
+		
+			priority.setSelection(task.getPriority());
+			
+			checkBoxFill.setChecked(task.getFill());
+			checkBoxAllDay.setChecked(task.getAllDay());
+			checkBoxRepeat.setChecked(task.getRepeat());
+			
+			titleField.setText(task.getTitle());
+			description.setText(task.getDescription());
+			location.setText(task.getLocation());
+			
+			if (task.getRepeat())
+			{
+				repeatType1.setSelection(task.getRepeatType());
+				repeatType2.setSelection(task.getRepeatInterval()-1);
+				
+				
+		
+				if (task.getRepeatType()==0)
+					repeatType2After.setText("zile");
+				else if (task.getRepeatType()==1)
+					repeatType2After.setText("sãptãmâni");
+				else if (task.getRepeatType()==2)
+					repeatType2After.setText("luni");
+				else if (task.getRepeatType()==3)
+					repeatType2After.setText("ani");
+			}
+			
+			
+		}
 		
 	}
 
