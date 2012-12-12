@@ -103,7 +103,7 @@ public class MyApplication {
 	
 		try {
 			//DataOutputStream oos = new DataOutputStream(Now.now.openFileOutput("taskNo.tm",Context.MODE_PRIVATE));
-			PrintWriter oos = new PrintWriter(Now.now.openFileOutput("taskNo.tm", Context.MODE_APPEND));
+			PrintWriter oos = new PrintWriter(Now.now.openFileOutput("taskNo.tm", Context.MODE_PRIVATE));
 			//oos.writeInt(tasks.size());
 			oos.println(tasks.size());
 			oos.flush();
