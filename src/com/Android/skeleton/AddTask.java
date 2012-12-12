@@ -217,7 +217,7 @@ AdapterView.OnItemSelectedListener{
 			
 			if (dateAndTime.get(Calendar.HOUR)==23)
 			{
-				if (dateAndTime.get(Calendar.MINUTE)<10)
+				if (dateAndTime.get(Calendar.MINUTE)<10) 
 				{
 					endTimeValue="00"+":0"+dateAndTime.get(Calendar.MINUTE);
 					task.setEndTime(0, dateAndTime.get(Calendar.MINUTE));

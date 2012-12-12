@@ -34,8 +34,8 @@ public class MyApplication {
 	
 	// id-ul task-ului pe care vreau sa-l editez/vizualizez
 	// daca nu e editare/vizualizare, nu ma intereseaza valoarea
-	public static int IDtask;
-	
+	public static int IDtask; 
+	 
 	public static void init()
 	{	
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
