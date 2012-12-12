@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.TimePickerDialog;
 import android.app.TimePickerDialog.OnTimeSetListener;
+import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -154,6 +155,8 @@ AdapterView.OnItemSelectedListener{
 				{
 					// TODO : ce faci cand nu ai titlul completat
 					// TODO: ce alte conditii mai pui
+					titleLabel.setTextColor(Color.RED);
+					//titleField.set
 				}
 				else
 				{
@@ -165,7 +168,9 @@ AdapterView.OnItemSelectedListener{
 					{
 						MyApplication.addTask(task);
 					}
+					titleLabel.setTextColor(Color.BLACK);
 					finish();
+					
 				}
 			}
 		}
@@ -174,6 +179,7 @@ AdapterView.OnItemSelectedListener{
 		{
 			public void onClick(View v)
 			{
+				titleLabel.setTextColor(Color.BLACK);
 				finish();
 			}
 		});
@@ -199,8 +205,8 @@ AdapterView.OnItemSelectedListener{
 		{
 			beginDateValue = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
 			task.setBeginDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), dateAndTime.get(Calendar.DAY_OF_MONTH));
-			endDateValue = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
-			task.setEndDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), dateAndTime.get(Calendar.DAY_OF_MONTH));
+		
+			
 								
 			if (dateAndTime.get(Calendar.MINUTE)<10)
 				beginTimeValue = dateAndTime.get(Calendar.HOUR_OF_DAY)+":0"+dateAndTime.get(Calendar.MINUTE);
@@ -209,16 +215,40 @@ AdapterView.OnItemSelectedListener{
 			
 			task.setBeginTime(dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE));
 			
-			if (dateAndTime.get(Calendar.MINUTE)<10)
+			if (dateAndTime.get(Calendar.HOUR)==23)
 			{
-				endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":0"+dateAndTime.get(Calendar.MINUTE);
-				task.setEndTime(dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE));
+				if (dateAndTime.get(Calendar.MINUTE)<10)
+				{
+					endTimeValue="00"+":0"+dateAndTime.get(Calendar.MINUTE);
+					task.setEndTime(0, dateAndTime.get(Calendar.MINUTE));
+				}
+				else
+				{
+					endTimeValue="00"+":"+dateAndTime.get(Calendar.MINUTE);
+					task.setEndTime(0, dateAndTime.get(Calendar.MINUTE));
+				}
+				
+				endDateValue = (dateAndTime.get(Calendar.DAY_OF_MONTH)+1)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
+				task.setEndDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), (dateAndTime.get(Calendar.DAY_OF_MONTH)+1));
 			}
 			else
 			{
-				endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":"+dateAndTime.get(Calendar.MINUTE);
-				task.setEndTime((dateAndTime.get(Calendar.HOUR_OF_DAY)+1), dateAndTime.get(Calendar.MINUTE));
+				if (dateAndTime.get(Calendar.MINUTE)<10)
+				{
+					endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":0"+dateAndTime.get(Calendar.MINUTE);
+					task.setEndTime(dateAndTime.get(Calendar.HOUR_OF_DAY), dateAndTime.get(Calendar.MINUTE));
+				}
+				else
+				{
+					endTimeValue=(dateAndTime.get(Calendar.HOUR_OF_DAY)+1)+":"+dateAndTime.get(Calendar.MINUTE);
+					task.setEndTime((dateAndTime.get(Calendar.HOUR_OF_DAY)+1), dateAndTime.get(Calendar.MINUTE));
+				}
+				
+				endDateValue = dateAndTime.get(Calendar.DAY_OF_MONTH)+"."+dateAndTime.get(Calendar.MONTH)+"."+dateAndTime.get(Calendar.YEAR);
+				task.setEndDate(dateAndTime.get(Calendar.YEAR), dateAndTime.get(Calendar.MONTH), dateAndTime.get(Calendar.DAY_OF_MONTH));
 			}
+			
+			
 		
 		}
 		
