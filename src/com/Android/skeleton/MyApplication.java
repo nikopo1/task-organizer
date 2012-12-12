@@ -40,6 +40,10 @@ public class MyApplication {
 	{	
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
 		alg.organizeDay(tasks, daytasks);
+		if(daytasks.size() != 0)
+			daytasks.addAll(0,alg.getAllDayDisplayTasks(tasks));
+		else
+			daytasks.addAll(alg.getAllDayDisplayTasks(tasks));
 		alg.organizeAll(tasks, alltasks);
 		
 		prioadapter.notifyDataSetChanged();
@@ -59,6 +63,7 @@ public class MyApplication {
 			pw.println(t.getRepeat());
 			pw.println(t.getDescription());
 			pw.println(t.getLocation());
+			
 			pw.println(t.getPriority());
 			pw.println(t.getTimePriority());
 			pw.println(t.getTotalPriority());
@@ -82,7 +87,7 @@ public class MyApplication {
 			pw.println(t.getRepeatType());
 			pw.println(t.getRepeatInterval());
 			pw.println(t.getFill());
-			pw.println(t.getTaskType());
+			//pw.println(t.getTaskType());
 			
 			
 			
@@ -97,8 +102,10 @@ public class MyApplication {
 		}
 	
 		try {
-			DataOutputStream oos = new DataOutputStream(Now.now.openFileOutput("taskNo.tm",Context.MODE_PRIVATE));
-			oos.writeInt(tasks.size());
+			//DataOutputStream oos = new DataOutputStream(Now.now.openFileOutput("taskNo.tm",Context.MODE_PRIVATE));
+			PrintWriter oos = new PrintWriter(Now.now.openFileOutput("taskNo.tm", Context.MODE_APPEND));
+			//oos.writeInt(tasks.size());
+			oos.println(tasks.size());
 			oos.flush();
 			oos.close();
 		} catch (IOException e) {
@@ -182,6 +189,10 @@ public class MyApplication {
 		
 		alg.organizePrio(tasks, MAX_NUMBER, priotasks);
 		alg.organizeDay(tasks, daytasks);
+		if(daytasks.size() != 0)
+			daytasks.addAll(0,alg.getAllDayDisplayTasks(tasks));
+		else
+			daytasks.addAll(alg.getAllDayDisplayTasks(tasks));
 		alg.organizeAll(tasks, alltasks);
 
 		
