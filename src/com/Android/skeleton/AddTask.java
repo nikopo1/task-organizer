@@ -42,6 +42,7 @@ AdapterView.OnItemSelectedListener{
 	TextView selection;
 	TextView priorityLabel;
 	TextView titleLabel;
+	TextView errorLabel;
 	Task task;
 
 	Spinner repeatType1;
@@ -115,7 +116,7 @@ AdapterView.OnItemSelectedListener{
 			task.setFill(false);
 		}
 		
-
+		errorLabel = (TextView)findViewById(R.id.errorLabel);
 		checkBoxAllDay = (CheckBox)findViewById(R.id.allDay);
 		checkBoxRepeat = (CheckBox)findViewById(R.id.repeat);
 		titleField = (EditText)findViewById(R.id.title);
@@ -155,7 +156,9 @@ AdapterView.OnItemSelectedListener{
 				{
 					// TODO : ce faci cand nu ai titlul completat
 					// TODO: ce alte conditii mai pui
-					titleLabel.setTextColor(Color.RED);
+					//titleLabel.setTextColor(Color.RED);
+					errorLabel.setVisibility(View.VISIBLE);
+					errorLabel.setTextColor(Color.RED);
 					//titleField.set
 				}
 				else
@@ -169,6 +172,7 @@ AdapterView.OnItemSelectedListener{
 						MyApplication.addTask(task);
 					}
 					titleLabel.setTextColor(Color.BLACK);
+					errorLabel.setVisibility(View.GONE);
 					finish();
 					
 				}
@@ -180,6 +184,7 @@ AdapterView.OnItemSelectedListener{
 			public void onClick(View v)
 			{
 				titleLabel.setTextColor(Color.BLACK);
+				errorLabel.setVisibility(View.GONE);
 				finish();
 			}
 		});

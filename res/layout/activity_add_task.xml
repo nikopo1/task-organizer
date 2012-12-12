@@ -35,13 +35,33 @@
     		android:inputType="text"
     	/>
     </LinearLayout>
+    
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/errorLayout"
+    android:layout_below="@id/titleLayout"
+>
+ 
+   		<TextView
+	        android:id="@+id/errorLabel"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/errorMessage"
+	        android:textSize="10sp" 
+	        android:visibility="gone"
+	        android:padding="10dp"/>
+ 
+</LinearLayout>	    
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:tools="http://schemas.android.com/tools"
 	    android:orientation="horizontal"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:layout_below="@id/titleLayout"
+	    android:layout_below="@id/errorLayout"
 	    android:id="@+id/allDayRepeatLayout"
 	>
 		<CheckBox 
@@ -253,61 +273,7 @@
 
 	</LinearLayout>
 	
-<!--  	<LinearLayout
-	    xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tool="http://schemas.android.com/tools"
-	    android:id="@+id/considerPriorityLayout"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_below="@id/priorityLayout"
-	    android:orientation="vertical" >
-	
-		<CheckBox 
-	    	android:id="@+id/considerPriority"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/considerPriorityMessage" 		
-    		android:textSize="10sp"
-		/>
-	</LinearLayout>
--->	
-<!--	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	    xmlns:tool="http://schemas.android.com/tools"
-	    android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:id="@+id/considerTimeLayout"
-	    android:layout_below="@id/considerPriorityLayout"
-	 	>
-		<CheckBox 
-	    	android:id="@+id/considerTime"
-    		android:layout_width="wrap_content"
-    		android:layout_height="wrap_content"
-    		android:text="@string/considerTimeMessage"
-    		android:textSize="10sp"
-		/>
-	</LinearLayout>
-	
--->	
- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/considerTimeLayout"
-    android:layout_below="@id/priorityLayout"
->
- <CheckBox 
-    android:id="@+id/considerTime"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/considerTimeMessage"
-    android:textSize="10sp"
-    android:visibility = "invisible"
-/>
-</LinearLayout>
 
- 
  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    xmlns:tool="http://schemas.android.com/tools"
 	    android:orientation="horizontal"
@@ -332,6 +298,33 @@
 		    android:text="@string/cancelMessage"
 		/>
 	</LinearLayout> 
+	
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/considerTimeLayout"
+    android:layout_below="@id/priorityLayout"
+>
+ <CheckBox 
+    android:id="@+id/considerTime"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/considerTimeMessage"
+    android:textSize="10sp"
+    android:visibility = "invisible"
+/>
+ 
+   <!--  		<TextView
+	        android:id="@+id/errorLabel_"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="@string/errorMessage"
+	        android:textSize="10sp" 
+	        android:visibility="visible"/>
+ -->
+</LinearLayout>
 
 	</RelativeLayout>
 	

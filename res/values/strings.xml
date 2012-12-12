@@ -27,6 +27,7 @@
     <string name="considerTimeMessage">Tine cont de dată/oră pentru planificare</string>
     <string name="okMessage">OK</string>
     <string name="cancelMessage">Cancel</string>
+    <string name="errorMessage">Adaugarea titlului este obligatorie</string>
     
     <string-array name="priorityValues">
         <item>1</item>
