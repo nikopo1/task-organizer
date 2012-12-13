@@ -25,8 +25,9 @@ public final class R {
         public static final int icon=0x7f020000;
     }
     public static final class id {
+        public static final int Location=0x7f080025;
         public static final int TimeInterval=0x7f080024;
-        public static final int Title=0x7f080025;
+        public static final int Title=0x7f080026;
         public static final int allDay=0x7f080007;
         public static final int allDayRepeatLayout=0x7f080006;
         public static final int beginDate=0x7f08000b;
@@ -61,11 +62,11 @@ public final class R {
         public static final int repeatTypeLayout=0x7f08000f;
         public static final int repeatTypeLayout2=0x7f080012;
         public static final int scrollComp=0x7f080000;
-        public static final int tab1=0x7f080027;
-        public static final int tab2=0x7f080028;
-        public static final int tab3=0x7f080029;
-        public static final int tab4=0x7f08002a;
-        public static final int tabhost=0x7f080026;
+        public static final int tab1=0x7f080028;
+        public static final int tab2=0x7f080029;
+        public static final int tab3=0x7f08002a;
+        public static final int tab4=0x7f08002b;
+        public static final int tabhost=0x7f080027;
         public static final int title=0x7f080003;
         public static final int titleLayout=0x7f080001;
     }

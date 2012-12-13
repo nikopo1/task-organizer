@@ -4,10 +4,24 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
-  	<TextView android:id="@+id/TimeInterval"
-  	 	android:textSize="17sp"
-  		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" />
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+	  	<TextView android:id="@+id/TimeInterval"
+	  	 	android:textSize="17sp"
+	  	 	android:gravity="left"
+	  	 	android:layout_weight="1"
+	  		android:layout_width="0dp"
+			android:layout_height="wrap_content" />
+		<TextView
+			android:id="@+id/Location"
+			android:textSize="17sp"
+			android:gravity="right"
+			android:layout_weight="1"
+	  		android:layout_width="0dp" 
+			android:layout_height="wrap_content" />
+	</LinearLayout>
 	<TextView 
 		android:id="@+id/Title"
 		android:textSize="25sp"
