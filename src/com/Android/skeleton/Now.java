@@ -149,6 +149,7 @@ public class Now extends Activity implements OnGestureListener {
 			
 			@Override
 			public void onClick(View v) {
+				 MyApplication.edit = false;
 				 Intent intent = new Intent(Now.this, AddTask.class);
 				 startActivity(intent);
 				 //Toast.makeText(getApplicationContext(), "Back to square one", Toast.LENGTH_SHORT).show();
@@ -178,6 +179,19 @@ public class Now extends Activity implements OnGestureListener {
 		listviewPrio = (ListView)findViewById(R.id.tab2);
 		MyApplication.prioadapter = new MyAdapter(this, MyApplication.priotasks);
 		listviewPrio.setAdapter(MyApplication.prioadapter);
+		listviewPrio.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView parentView, View childView, int position, long id)
+			{
+				 MyApplication.edit = true;
+				 MyApplication.IDtask = position; 
+				 Intent intent = new Intent(Now.this, AddTask.class);
+				 startActivity(intent);
+			}
+
+			});
+		
 		
 		listviewDay = (ListView)findViewById(R.id.tab3);
 		MyApplication.dayadapter = new MyAdapter(this, MyApplication.daytasks);
@@ -200,7 +214,18 @@ public class Now extends Activity implements OnGestureListener {
 		listviewAll = (ListView)findViewById(R.id.tab4);
 		MyApplication.alladapter = new MyAdapter(this, MyApplication.alltasks);
 		listviewAll.setAdapter(MyApplication.alladapter); 
-		
+		listviewAll.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+			@Override
+			public void onItemClick(AdapterView parentView, View childView, int position, long id)
+			{
+				 MyApplication.edit = true;
+				 MyApplication.IDtask = position; 
+				 Intent intent = new Intent(Now.this, AddTask.class);
+				 startActivity(intent);
+			}
+
+			});
 		
 		MyApplication.init();
 	}
