@@ -8,6 +8,10 @@ public class TaskUtils
 {
 	private static final float MAX_PERIOD=31*24;
 	private static final float MIN_PERIOD=0;
+	
+	private static final int MIN_PRIO=1;
+	private static final int MAX_PRIO=5;
+	
 	public static MinMax getMinMaxMaxWorkingTime(ArrayList<Task> tasks)
 	{
 		MinMax m = new MinMax();
@@ -34,10 +38,11 @@ public class TaskUtils
 		{
 			float remainingTime = TimeUtils.getIntervalInHours(new GregorianCalendar(),t.getEndTimeInGregorian());
 			if(remainingTime>MAX_PERIOD)
-				t.setTimePriority(0);
+				t.setTimePriority(MIN_PRIO);
 			else
 			{
-				t.setTimePriority(Math.abs(10-(remainingTime/MAX_PERIOD)*10));
+				//TODO
+				t.setTimePriority(Math.abs((float)MAX_PRIO-((float)remainingTime/(float)MAX_PERIOD)*(float)MAX_PRIO));
 			}
 		}
 		
